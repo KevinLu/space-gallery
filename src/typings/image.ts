@@ -7,8 +7,6 @@ export interface ImageCardProps {
   copyright?: string;
   description: string;
   mediaType: 'image' | 'video';
-  isLiked: boolean;
-  likeImage: (title: string) => void; // function to like the image
 }
 
 export interface BlankImageCardProps {

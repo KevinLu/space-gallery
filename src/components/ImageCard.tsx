@@ -13,22 +13,32 @@ import NextLink from 'next/link';
 import type { ImageCardProps } from '@/typings/image';
 import { Heart } from 'phosphor-react';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import InitialLikesContext from '@/context/Likes';
+import likeImage from '@/utils/likeImage';
+import { useState, useEffect, useContext } from 'react';
 import MediaTypeTag from './MediaTypeTag';
 
 const MotionBox = motion<BoxProps>(Box);
 const MotionImage = motion<ImageProps>(Image);
 const MotionIconButton = motion<IconButtonProps>(IconButton);
 
-function ImageCard({
-  src,
-  title,
-  date,
-  mediaType,
-  isLiked,
-  likeImage,
-}: ImageCardProps) {
+function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const initialLikes = useContext(InitialLikesContext);
+  const [isLiked, setIsLiked] = useState(initialLikes[title]);
+
+  // hydrate the isLiked state from the value from context
+  useEffect(() => {
+    if (initialLikes[title]) {
+      setIsLiked(initialLikes[title]);
+    }
+  }, [initialLikes, title]);
+
+  // toggle the like
+  const LikeThisImage = () => {
+    likeImage(title);
+    setIsLiked((curr) => !curr);
+  };
 
   return (
     <Flex
@@ -84,7 +94,7 @@ function ImageCard({
           variant="unstyled"
           display="flex"
           color={isLiked ? `red.500` : `gray.500`}
-          onClick={() => likeImage(title)}
+          onClick={LikeThisImage}
         />
       </Flex>
     </Flex>
