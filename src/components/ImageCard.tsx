@@ -40,30 +40,29 @@ function ImageCard({
       p={4}
     >
       <NextLink href={`/image/${date}`} passHref>
-        <a>
-          <MotionBox
+        <MotionBox
+          as="a"
+          borderRadius="md"
+          whileHover={{ scale: 1.02 }}
+          overflow="hidden"
+          minH="30rem"
+          flexGrow={1}
+        >
+          <MotionImage
+            src={src}
+            alt={title}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{
+              opacity: isImageLoaded ? 1 : 0,
+              scale: isImageLoaded ? 1.05 : 1,
+            }}
+            whileHover={{ scale: 1 }}
             borderRadius="md"
-            whileHover={{ scale: 1.02 }}
-            overflow="hidden"
-          >
-            <MotionImage
-              src={src}
-              alt={title}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{
-                opacity: isImageLoaded ? 1 : 0,
-                scale: isImageLoaded ? 1.05 : 1,
-              }}
-              whileHover={{ scale: 1 }}
-              borderRadius="md"
-              onLoad={() => setIsImageLoaded(true)}
-              flexGrow={1}
-              minH="30rem"
-              w="100%"
-              objectFit="cover"
-            />
-          </MotionBox>
-        </a>
+            onLoad={() => setIsImageLoaded(true)}
+            h="100%"
+            objectFit="cover"
+          />
+        </MotionBox>
       </NextLink>
       <Flex mt={2} alignItems="center" justifyContent="space-between">
         <VStack justifyContent="space-between" alignItems="flex-start">
