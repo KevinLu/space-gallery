@@ -3,7 +3,6 @@ import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import GetAPOD from '@/api/apod';
 import LoadingIndicator from '@/components/LoadingIndicator';
-import type { APODImage } from '@/typings/api';
 import type { LikeAction, LikeState } from '@/typings/reducer';
 import {
   LOCALSTORAGE_KEY,
@@ -102,7 +101,7 @@ function Gallery() {
         />
       ))}
       {isFetching ? (
-        SKELETON_ARRAY.map((i) => <Skeleton key={i} minH="30rem" />)
+        SKELETON_ARRAY.map((i) => <Skeleton key={i} minH="38rem" />)
       ) : (
         <BlankImageCard onClick={() => setPage((old) => old + 1)} />
       )}

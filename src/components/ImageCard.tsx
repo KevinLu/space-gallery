@@ -1,7 +1,6 @@
 import {
   Image,
   ImageProps,
-  Box,
   Flex,
   Text,
   IconButton,
@@ -63,7 +62,7 @@ function ImageCard({
             {title}
           </Text>
           <Text>{date}</Text>
-          <Tag colorScheme={mediaType === `image` ? `pink` : `teal`}>
+          <Tag colorScheme={mediaType === `image` ? `purple` : `teal`}>
             <TagLeftIcon
               boxSize="16px"
               as={mediaType === `image` ? ImageSquare : YoutubeLogo}

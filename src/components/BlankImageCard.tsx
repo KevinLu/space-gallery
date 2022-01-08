@@ -11,7 +11,7 @@ function BlankImageCard({ onClick }: BlankImageCardProps) {
       onClick={onClick}
       as="article"
       cursor="pointer"
-      minH="30rem"
+      minH="38rem"
       borderWidth="2px"
       borderStyle="dashed"
       bg="white"
