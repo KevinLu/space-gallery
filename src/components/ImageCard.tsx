@@ -4,8 +4,15 @@ import { StarIcon } from '@chakra-ui/icons';
 
 function ImageCard({ src, title, date }: ImageCardProps) {
   return (
-    <Box as="article" borderRadius="base" dropShadow="base">
-      <Image src={src} alt={title} h="30rem" w="100%" objectFit="cover" />
+    <Box as="article" borderWidth="1px" p={4}>
+      <Image
+        src={src}
+        alt={title}
+        borderRadius="md"
+        h="30rem"
+        w="100%"
+        objectFit="cover"
+      />
       <Flex mt={2} alignItems="center" justifyContent="space-between">
         <Flex flexDir="column">
           <Heading as="h2" size="md">
