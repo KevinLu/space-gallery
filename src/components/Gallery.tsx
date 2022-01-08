@@ -87,7 +87,7 @@ function Gallery() {
   }
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={4} px={2}>
+    <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={4}>
       {data.map((image) => (
         <ImageCard
           key={image.title}
@@ -101,10 +101,7 @@ function Gallery() {
         />
       ))}
       {isFetching ? (
-        SKELETON_ARRAY.map((i) => {
-          console.log(i);
-          return <Skeleton key={i} minH="30rem" />;
-        })
+        SKELETON_ARRAY.map((i) => <Skeleton key={i} minH="30rem" />)
       ) : (
         <BlankImageCard onClick={() => setPage((old) => old + 1)} />
       )}

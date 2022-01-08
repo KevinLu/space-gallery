@@ -4,7 +4,7 @@ import { Heart } from 'phosphor-react';
 
 function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
   return (
-    <Box as="article" borderWidth="1px" p={4}>
+    <Box as="article" borderWidth="1px" bg="white" p={4}>
       <Image
         src={src}
         alt={title}

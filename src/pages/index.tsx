@@ -1,10 +1,11 @@
 import Head from 'next/head';
+import { Box } from '@chakra-ui/react';
 import Header from '@/components/Header';
 import Gallery from '@/components/Gallery';
 
 export default function Home() {
   return (
-    <div>
+    <Box bg="gray.50" py={8} px={4}>
       <Head>
         <title>Space Gallery</title>
         <meta
@@ -14,10 +15,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Box as="main">
         <Header />
         <Gallery />
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }

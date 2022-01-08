@@ -11,6 +11,7 @@ function BlankImageCard({ onClick }: BlankImageCardProps) {
       minH="30rem"
       borderWidth="2px"
       borderStyle="dashed"
+      bg="white"
       p={4}
     >
       <Center flexDir="column" h="100%">
