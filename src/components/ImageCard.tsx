@@ -6,20 +6,38 @@ import {
   Text,
   IconButton,
   IconButtonProps,
+  VStack,
+  Tag,
+  TagLeftIcon,
+  TagLabel,
 } from '@chakra-ui/react';
 import type { ImageCardProps } from '@/typings/image';
-import { Heart } from 'phosphor-react';
+import { Heart, ImageSquare, YoutubeLogo } from 'phosphor-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const MotionImage = motion<ImageProps>(Image);
 const MotionIconButton = motion<IconButtonProps>(IconButton);
 
-function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
+function ImageCard({
+  src,
+  title,
+  date,
+  mediaType,
+  isLiked,
+  likeImage,
+}: ImageCardProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <Box as="article" borderWidth="1px" bg="white" p={4}>
+    <Flex
+      as="article"
+      flexDir="column"
+      justifyContent="space-between"
+      borderWidth="1px"
+      bg="white"
+      p={4}
+    >
       <MotionImage
         src={src}
         alt={title}
@@ -29,17 +47,30 @@ function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
         }}
         onLoad={() => setIsImageLoaded(true)}
         borderRadius="md"
-        h="30rem"
+        flexGrow={1}
+        minH="30rem"
         w="100%"
         objectFit="cover"
       />
       <Flex mt={2} alignItems="center" justifyContent="space-between">
-        <Flex flexDir="column">
-          <Text as="h2" fontSize="xl" fontWeight="semibold" lineHeight="short">
+        <VStack justifyContent="space-between" alignItems="flex-start">
+          <Text
+            as="h2"
+            fontSize="xl"
+            fontWeight="semibold"
+            lineHeight="shorter"
+          >
             {title}
           </Text>
           <Text>{date}</Text>
-        </Flex>
+          <Tag colorScheme={mediaType === `image` ? `pink` : `teal`}>
+            <TagLeftIcon
+              boxSize="16px"
+              as={mediaType === `image` ? ImageSquare : YoutubeLogo}
+            />
+            <TagLabel textTransform="capitalize">{mediaType}</TagLabel>
+          </Tag>
+        </VStack>
         <MotionIconButton
           aria-label="Like image"
           icon={<Heart weight={isLiked ? `fill` : `regular`} size="2rem" />}
@@ -50,7 +81,7 @@ function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
           onClick={() => likeImage(title)}
         />
       </Flex>
-    </Box>
+    </Flex>
   );
 }
 

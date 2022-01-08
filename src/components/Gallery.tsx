@@ -95,6 +95,7 @@ function Gallery() {
           title={image.title}
           description={image.explanation}
           date={image.date}
+          mediaType={image.media_type}
           copyright={image.copyright}
           isLiked={state[image.title]}
           likeImage={likeImage}
