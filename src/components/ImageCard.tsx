@@ -1,8 +1,8 @@
 import { Image, Box, Flex, Text, IconButton } from '@chakra-ui/react';
-import { ImageCardProps } from '@/typings/image';
+import type { ImageCardProps } from '@/typings/image';
 import { Heart } from 'phosphor-react';
 
-function ImageCard({ src, title, date }: ImageCardProps) {
+function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
   return (
     <Box as="article" borderWidth="1px" p={4}>
       <Image
@@ -22,8 +22,10 @@ function ImageCard({ src, title, date }: ImageCardProps) {
         </Flex>
         <IconButton
           aria-label="Like image"
-          icon={<Heart weight="regular" size="24px" />}
+          icon={<Heart weight={isLiked ? `fill` : `regular`} size="24px" />}
           variant="ghost"
+          color={isLiked ? `red.500` : `gray.500`}
+          onClick={() => likeImage(title)}
         />
       </Flex>
     </Box>
