@@ -7,3 +7,7 @@ export interface ImageCardProps {
   isLiked: boolean;
   likeImage: (title: string) => void; // function to like the image
 }
+
+export interface BlankImageCardProps {
+  onClick: () => void;
+}
