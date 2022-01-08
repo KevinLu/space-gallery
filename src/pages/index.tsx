@@ -6,10 +6,11 @@ import Footer from '@/components/Footer';
 import { fetchImagesByPage } from '@/api/apod';
 import type { HomeProps } from '@/typings/image';
 
+// fetch the first few images on the server
 export async function getStaticProps() {
   try {
     const res = await fetchImagesByPage(1);
-    return { props: { images: res } };
+    return { props: { images: res }, revalidate: 60 };
   } catch (error) {
     // NASA api error
     console.error(error);
