@@ -1,6 +1,6 @@
 import { Image, Box, Flex, Text, IconButton } from '@chakra-ui/react';
 import { ImageCardProps } from '@/typings/image';
-import { StarIcon } from '@chakra-ui/icons';
+import { Heart } from 'phosphor-react';
 
 function ImageCard({ src, title, date }: ImageCardProps) {
   return (
@@ -22,7 +22,7 @@ function ImageCard({ src, title, date }: ImageCardProps) {
         </Flex>
         <IconButton
           aria-label="Like image"
-          icon={<StarIcon />}
+          icon={<Heart weight="regular" size="24px" />}
           variant="ghost"
         />
       </Flex>
