@@ -9,13 +9,13 @@ function BlankImageCard({ onClick }: BlankImageCardProps) {
   return (
     <Box
       onClick={onClick}
-      as="article"
       cursor="pointer"
       minH="38rem"
       borderWidth="2px"
       borderStyle="dashed"
       bg="white"
       p={4}
+      overflow="hidden"
     >
       <MotionCenter flexDir="column" h="100%" whileHover={{ scale: 1.1 }}>
         <Icon as={Planet} color="gray.300" w={128} h={128} />
