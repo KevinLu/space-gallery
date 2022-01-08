@@ -1,13 +1,31 @@
-import { Image, Box, Flex, Text, IconButton } from '@chakra-ui/react';
+import {
+  Image,
+  ImageProps,
+  Box,
+  Flex,
+  Text,
+  IconButton,
+} from '@chakra-ui/react';
 import type { ImageCardProps } from '@/typings/image';
 import { Heart } from 'phosphor-react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+
+const MotionImage = motion<ImageProps>(Image);
 
 function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   return (
     <Box as="article" borderWidth="1px" bg="white" p={4}>
-      <Image
+      <MotionImage
         src={src}
         alt={title}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: isImageLoaded ? 1 : 0,
+        }}
+        onLoad={() => setIsImageLoaded(true)}
         borderRadius="md"
         h="30rem"
         w="100%"

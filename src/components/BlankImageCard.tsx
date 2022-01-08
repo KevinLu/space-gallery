@@ -1,6 +1,9 @@
-import { Center, Box, Icon, Text } from '@chakra-ui/react';
+import { CenterProps, Center, Box, Icon, Text } from '@chakra-ui/react';
 import { Planet } from 'phosphor-react';
 import type { BlankImageCardProps } from '@/typings/image';
+import { motion } from 'framer-motion';
+
+const MotionCenter = motion<CenterProps>(Center);
 
 function BlankImageCard({ onClick }: BlankImageCardProps) {
   return (
@@ -14,10 +17,10 @@ function BlankImageCard({ onClick }: BlankImageCardProps) {
       bg="white"
       p={4}
     >
-      <Center flexDir="column" h="100%">
+      <MotionCenter flexDir="column" h="100%" whileHover={{ scale: 1.1 }}>
         <Icon as={Planet} color="gray.300" w={128} h={128} />
         <Text fontSize="2xl">Load more images</Text>
-      </Center>
+      </MotionCenter>
     </Box>
   );
 }
