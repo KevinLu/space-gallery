@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useState, useEffect } from 'react';
 import InitialLikesContext from '@/context/Likes';
 import { LOCALSTORAGE_KEY } from '@/constants';
+import getFromLocalStorage from '@/utils/getFromLocalStorage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,9 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // only run this once to grab likes from localstorage
   // modification of likes will be done in memory through individual component states
   useEffect(() => {
-    setInitialLikedImages(
-      JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY) ?? `{}`),
-    );
+    setInitialLikedImages(getFromLocalStorage(LOCALSTORAGE_KEY));
   }, []);
 
   return (
