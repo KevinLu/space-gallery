@@ -1,4 +1,6 @@
 import {
+  Box,
+  BoxProps,
   Image,
   ImageProps,
   Flex,
@@ -6,15 +8,15 @@ import {
   IconButton,
   IconButtonProps,
   VStack,
-  Tag,
-  TagLeftIcon,
-  TagLabel,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import type { ImageCardProps } from '@/typings/image';
-import { Heart, ImageSquare, YoutubeLogo } from 'phosphor-react';
+import { Heart } from 'phosphor-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import MediaTypeTag from './MediaTypeTag';
 
+const MotionBox = motion<BoxProps>(Box);
 const MotionImage = motion<ImageProps>(Image);
 const MotionIconButton = motion<IconButtonProps>(IconButton);
 
@@ -37,20 +39,32 @@ function ImageCard({
       bg="white"
       p={4}
     >
-      <MotionImage
-        src={src}
-        alt={title}
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: isImageLoaded ? 1 : 0,
-        }}
-        onLoad={() => setIsImageLoaded(true)}
-        borderRadius="md"
-        flexGrow={1}
-        minH="30rem"
-        w="100%"
-        objectFit="cover"
-      />
+      <NextLink href={`/image/${date}`} passHref>
+        <a>
+          <MotionBox
+            borderRadius="md"
+            whileHover={{ scale: 1.02 }}
+            overflow="hidden"
+          >
+            <MotionImage
+              src={src}
+              alt={title}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{
+                opacity: isImageLoaded ? 1 : 0,
+                scale: isImageLoaded ? 1.05 : 1,
+              }}
+              whileHover={{ scale: 1 }}
+              borderRadius="md"
+              onLoad={() => setIsImageLoaded(true)}
+              flexGrow={1}
+              minH="30rem"
+              w="100%"
+              objectFit="cover"
+            />
+          </MotionBox>
+        </a>
+      </NextLink>
       <Flex mt={2} alignItems="center" justifyContent="space-between">
         <VStack justifyContent="space-between" alignItems="flex-start">
           <Text
@@ -62,17 +76,11 @@ function ImageCard({
             {title}
           </Text>
           <Text>{date}</Text>
-          <Tag colorScheme={mediaType === `image` ? `purple` : `teal`}>
-            <TagLeftIcon
-              boxSize="16px"
-              as={mediaType === `image` ? ImageSquare : YoutubeLogo}
-            />
-            <TagLabel textTransform="capitalize">{mediaType}</TagLabel>
-          </Tag>
+          <MediaTypeTag mediaType={mediaType} />
         </VStack>
         <MotionIconButton
           aria-label="Like image"
-          icon={<Heart weight={isLiked ? `fill` : `regular`} size="2rem" />}
+          icon={<Heart weight={isLiked ? `fill` : `regular`} size="32px" />}
           whileTap={{ scale: 0.8 }}
           variant="unstyled"
           display="flex"
