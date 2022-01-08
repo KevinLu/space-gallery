@@ -9,13 +9,12 @@ import ImageCard from './ImageCard';
 import BlankImageCard from './BlankImageCard';
 
 function Gallery({ images }: GalleryProps) {
-  // start fetching on page 2 since we fetched first page on the server
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
 
   const { data, error, isLoading, isFetching } = useQuery(
     [`queryAPOD`, page],
     () => fetchImagesByPage(page),
-    { keepPreviousData: true, initialData: images, enabled: page !== 2 },
+    { keepPreviousData: true, initialData: images, enabled: page !== 1 },
   );
 
   if (isLoading) {
