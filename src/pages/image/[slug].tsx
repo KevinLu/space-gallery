@@ -6,6 +6,7 @@ import type { ImagePageProps } from '@/typings/image';
 import LayoutTemplate from '@/components/LayoutTemplate';
 import ImagePost from '@/components/ImagePost';
 import BackHeader from '@/components/BackHeader';
+import LoadingIndicator from '@/components/LoadingIndicator';
 
 type Params = {
   params: {
@@ -13,12 +14,19 @@ type Params = {
   };
 };
 
+function isValidDate(dateString: string) {
+  const regEx = /^\d{4}-\d{2}-\d{2}$/;
+  return dateString.match(regEx) != null;
+}
+
 export async function getStaticPaths() {
   return { paths: [], fallback: true };
 }
 
 export async function getStaticProps({ params }: Params) {
   const { slug } = params;
+
+  if (!isValidDate(slug)) return { notFound: true };
 
   try {
     const image = await GetAPOD({ date: slug, thumbs: true });
@@ -33,6 +41,10 @@ export async function getStaticProps({ params }: Params) {
 function Image({ image }: ImagePageProps) {
   const { isFallback } = useRouter();
 
+  if (isFallback) {
+    return <LoadingIndicator />;
+  }
+
   return (
     <LayoutTemplate py={4}>
       <Head>
@@ -45,18 +57,14 @@ function Image({ image }: ImagePageProps) {
       </Head>
       <BackHeader />
       <Container as="main" maxW={{ lg: `container.lg` }}>
-        {isFallback ? (
-          <Skeleton minH="38rem" />
-        ) : (
-          <ImagePost
-            src={image.media_type === `video` ? image.thumbnail_url : image.url}
-            title={image.title}
-            description={image.explanation}
-            date={image.date}
-            mediaType={image.media_type}
-            copyright={image.copyright}
-          />
-        )}
+        <ImagePost
+          src={image.media_type === `video` ? image.thumbnail_url : image.url}
+          title={image.title}
+          description={image.explanation}
+          date={image.date}
+          mediaType={image.media_type}
+          copyright={image.copyright}
+        />
       </Container>
     </LayoutTemplate>
   );
