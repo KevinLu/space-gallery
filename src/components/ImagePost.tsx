@@ -6,10 +6,19 @@ import {
   VStack,
   HStack,
   Icon,
+  Divider,
+  Button,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import MediaTypeTag from './MediaTypeTag';
 import type { ImagePostProps } from '@/typings/image';
-import { Calendar, ChatDots, Copyright } from 'phosphor-react';
+import {
+  ArrowSquareOut,
+  Calendar,
+  ChatDots,
+  Copyright,
+  Share,
+} from 'phosphor-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -17,6 +26,7 @@ const MotionImg = motion<ImgProps>(Img);
 
 function ImagePost({
   src,
+  hdSrc,
   title,
   date,
   mediaType,
@@ -26,14 +36,7 @@ function ImagePost({
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <Flex
-      as="article"
-      flexDir="column"
-      justifyContent="space-between"
-      borderWidth="1px"
-      bg="white"
-      p={4}
-    >
+    <VStack as="article" borderWidth="1px" bg="white" p={4}>
       <MotionImg
         src={src}
         alt={title}
@@ -80,7 +83,27 @@ function ImagePost({
           ) : null}
         </VStack>
       </Flex>
-    </Flex>
+      <Divider pt={2} />
+      <ButtonGroup
+        variant="link"
+        size="lg"
+        flexWrap="wrap"
+        justifyContent="center"
+        spacing={8}
+        py={2}
+      >
+        <Button
+          as="a"
+          href={hdSrc}
+          target="_blank"
+          colorScheme="pink"
+          leftIcon={<Icon as={ArrowSquareOut} />}
+        >
+          View source
+        </Button>
+        <Button leftIcon={<Icon as={Share} />}>Share this page</Button>
+      </ButtonGroup>
+    </VStack>
   );
 }
 

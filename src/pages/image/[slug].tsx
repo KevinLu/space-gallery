@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Skeleton, Container } from '@chakra-ui/react';
+import { Container } from '@chakra-ui/react';
 import GetAPOD from '@/api/apod';
 import type { ImagePageProps } from '@/typings/image';
 import LayoutTemplate from '@/components/LayoutTemplate';
@@ -56,9 +56,10 @@ function Image({ image }: ImagePageProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <BackHeader />
-      <Container as="main" maxW={{ lg: `container.lg` }}>
+      <Container as="main" maxW={{ lg: `container.lg` }} mt={4}>
         <ImagePost
           src={image.media_type === `video` ? image.thumbnail_url : image.url}
+          hdSrc={image.media_type === `video` ? image.url : image.hdurl}
           title={image.title}
           description={image.explanation}
           date={image.date}

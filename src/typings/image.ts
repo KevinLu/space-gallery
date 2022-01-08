@@ -21,6 +21,7 @@ export interface ImagePageProps {
 
 export interface ImagePostProps {
   src: string;
+  hdSrc: string;
   title: string;
   date: string; // YYYY-MM-DD
   copyright?: string;
