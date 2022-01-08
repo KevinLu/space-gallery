@@ -28,3 +28,11 @@ export interface ImagePostProps {
   description: string;
   mediaType: 'image' | 'video';
 }
+
+export interface HomeProps {
+  images: Array<APODImage>;
+}
+
+export interface GalleryProps {
+  images: Array<APODImage>;
+}

@@ -1,15 +1,11 @@
 import { useState, useReducer, useEffect } from 'react';
 import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
-import GetAPOD from '@/api/apod';
+import { fetchImagesByPage } from '@/api/apod';
 import LoadingIndicator from '@/components/LoadingIndicator';
 import type { LikeAction, LikeState } from '@/typings/reducer';
-import {
-  LOCALSTORAGE_KEY,
-  ONE_DAY_MS,
-  NUM_DAYS_PER_FETCH,
-  SKELETON_ARRAY,
-} from '@/constants';
+import type { GalleryProps } from '@/typings/image';
+import { LOCALSTORAGE_KEY, SKELETON_ARRAY } from '@/constants';
 import ImageCard from './ImageCard';
 import BlankImageCard from './BlankImageCard';
 
@@ -32,35 +28,15 @@ const reducer = (state: LikeState, action: LikeAction) => {
   }
 };
 
-function Gallery() {
+function Gallery({ images }: GalleryProps) {
   const [state, dispatch] = useReducer(reducer, undefined, initLikedImages);
-  const [page, setPage] = useState(1);
+  // start fetching on page 2 since we fetched first page on the server
+  const [page, setPage] = useState(2);
 
   const { data, error, isLoading, isFetching } = useQuery(
     [`queryAPOD`, page],
-    async () => {
-      // default is to fetch images up to NUM_DAYS_PER_FETCH days ago
-      // en-CA locale provides YYYY-MM-DD format
-      // multiply by the page to fetch previous NUM_DAYS_PER_FETCH days of images
-      const start_date = new Date(
-        Date.now() - NUM_DAYS_PER_FETCH * page * ONE_DAY_MS,
-      ).toLocaleDateString(`en-CA`);
-
-      const res = await GetAPOD({
-        start_date,
-        thumbs: true,
-      });
-
-      if (Array.isArray(res.data)) {
-        // sort the images by most recent date
-        return res.data.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-        );
-      }
-
-      return [res.data];
-    },
-    { keepPreviousData: true },
+    () => fetchImagesByPage(page),
+    { keepPreviousData: true, initialData: images, enabled: page !== 2 },
   );
 
   useEffect(() => {
