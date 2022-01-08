@@ -5,6 +5,7 @@ import {
   Flex,
   Text,
   IconButton,
+  IconButtonProps,
 } from '@chakra-ui/react';
 import type { ImageCardProps } from '@/typings/image';
 import { Heart } from 'phosphor-react';
@@ -12,6 +13,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 const MotionImage = motion<ImageProps>(Image);
+const MotionIconButton = motion<IconButtonProps>(IconButton);
 
 function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -38,10 +40,12 @@ function ImageCard({ src, title, date, isLiked, likeImage }: ImageCardProps) {
           </Text>
           <Text>{date}</Text>
         </Flex>
-        <IconButton
+        <MotionIconButton
           aria-label="Like image"
-          icon={<Heart weight={isLiked ? `fill` : `regular`} size="24px" />}
-          variant="ghost"
+          icon={<Heart weight={isLiked ? `fill` : `regular`} size="2rem" />}
+          whileTap={{ scale: 0.8 }}
+          variant="unstyled"
+          display="flex"
           color={isLiked ? `red.500` : `gray.500`}
           onClick={() => likeImage(title)}
         />
