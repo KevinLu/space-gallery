@@ -1,4 +1,4 @@
-import { Image, Box, Flex, Heading, Text, IconButton } from '@chakra-ui/react';
+import { Image, Box, Flex, Text, IconButton } from '@chakra-ui/react';
 import { ImageCardProps } from '@/typings/image';
 import { StarIcon } from '@chakra-ui/icons';
 
@@ -15,9 +15,9 @@ function ImageCard({ src, title, date }: ImageCardProps) {
       />
       <Flex mt={2} alignItems="center" justifyContent="space-between">
         <Flex flexDir="column">
-          <Heading as="h2" size="md">
+          <Text as="h2" fontSize="xl" fontWeight="semibold" lineHeight="short">
             {title}
-          </Heading>
+          </Text>
           <Text>{date}</Text>
         </Flex>
         <IconButton
