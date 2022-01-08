@@ -63,7 +63,7 @@ function Gallery() {
   }
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={4}>
+    <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={4} px={2}>
       {data.map((image) => (
         <ImageCard
           key={image.title}
