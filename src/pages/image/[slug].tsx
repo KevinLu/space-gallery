@@ -42,24 +42,43 @@ function Image({ image }: ImagePageProps) {
   const { isFallback } = useRouter();
 
   if (isFallback) {
-    return <LoadingIndicator />;
+    return (
+      <LayoutTemplate py={4}>
+        <Head>
+          <title>Loading Image... - Space Gallery</title>
+          <meta
+            name="description"
+            content="View the finest photos from space, curated by NASA."
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <LoadingIndicator />
+      </LayoutTemplate>
+    );
   }
+
+  // only two types, if it's not a video then it's an image
+  const isVideo = image.media_type === `video`;
+  const src = isVideo ? image.thumbnail_url : image.url;
+  const hdSrc = isVideo ? image.url : image.hdurl;
+  const ogType = isVideo ? `video.other` : `website`;
 
   return (
     <LayoutTemplate py={4}>
       <Head>
-        <title>{image?.title} - Space Gallery</title>
-        <meta
-          name="description"
-          content="View the finest photos from space, curated by NASA."
-        />
+        <title>{image.title} - Space Gallery</title>
+        <meta name="description" content={image.explanation} />
+        <meta property="og:title" content={image.title} key="title" />
+        <meta property="og:type" content={ogType} key="type" />
+        <meta property="og:image" content={src} key="image" />
+        <meta property="og:site_name" content="Space Gallery" key="site_name" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <BackHeader />
       <Container as="main" maxW={{ lg: `container.lg` }} mt={4}>
         <ImagePost
-          src={image.media_type === `video` ? image.thumbnail_url : image.url}
-          hdSrc={image.media_type === `video` ? image.url : image.hdurl}
+          src={src}
+          hdSrc={hdSrc}
           title={image.title}
           description={image.explanation}
           date={image.date}
