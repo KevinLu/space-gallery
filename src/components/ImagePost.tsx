@@ -33,9 +33,8 @@ function ImagePost({
       <MotionImg
         src={src}
         alt={title}
-        initial={{ opacity: 0 }}
+        initial={{ scale: 0.9 }}
         animate={{
-          opacity: isImageLoaded ? 1 : 0,
           scale: isImageLoaded ? 1 : 0.9,
         }}
         onLoad={() => setIsImageLoaded(true)}

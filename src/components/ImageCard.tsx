@@ -61,9 +61,8 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
           <MotionImage
             src={src}
             alt={title}
-            initial={{ opacity: 0, scale: 1.05 }}
+            initial={{ scale: 1.05 }}
             animate={{
-              opacity: isImageLoaded ? 1 : 0,
               scale: isImageLoaded ? 1.05 : 1,
             }}
             whileHover={{ scale: 1 }}
