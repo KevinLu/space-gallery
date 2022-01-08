@@ -7,11 +7,14 @@ export default function Home() {
   return (
     <LayoutTemplate px={4} py={8}>
       <Head>
-        <title>Space Gallery</title>
+        <title>Home - Space Gallery</title>
         <meta
           name="description"
           content="View the finest photos from space, curated by NASA."
         />
+        <meta property="og:title" content="Home - Space Gallery" key="title" />
+        <meta property="og:type" content="website" key="type" />
+        <meta property="og:site_name" content="Space Gallery" key="site_name" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
