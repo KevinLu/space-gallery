@@ -5,7 +5,7 @@ import Gallery from '@/components/Gallery';
 
 export default function Home() {
   return (
-    <Box bg="gray.50" py={8} px={4}>
+    <Box bg="gray.50" py={8} px={4} minH="100vh">
       <Head>
         <title>Space Gallery</title>
         <meta
