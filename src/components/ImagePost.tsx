@@ -7,18 +7,11 @@ import {
   HStack,
   Icon,
   Divider,
-  Button,
-  ButtonGroup,
 } from '@chakra-ui/react';
 import MediaTypeTag from './MediaTypeTag';
+import PostActions from './PostActions';
 import type { ImagePostProps } from '@/typings/image';
-import {
-  ArrowSquareOut,
-  Calendar,
-  ChatDots,
-  Copyright,
-  Share,
-} from 'phosphor-react';
+import { Calendar, ChatDots, Copyright } from 'phosphor-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -84,25 +77,7 @@ function ImagePost({
         </VStack>
       </Flex>
       <Divider pt={2} />
-      <ButtonGroup
-        variant="link"
-        size="lg"
-        flexWrap="wrap"
-        justifyContent="center"
-        spacing={8}
-        py={2}
-      >
-        <Button
-          as="a"
-          href={hdSrc}
-          target="_blank"
-          colorScheme="pink"
-          leftIcon={<Icon as={ArrowSquareOut} />}
-        >
-          View source
-        </Button>
-        <Button leftIcon={<Icon as={Share} />}>Share this page</Button>
-      </ButtonGroup>
+      <PostActions src={hdSrc} />
     </VStack>
   );
 }
