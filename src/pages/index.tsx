@@ -6,7 +6,7 @@ import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
 import { fetchImagesByPage } from '@/api/apod';
 import type { HomeProps } from '@/typings/image';
-import { SITE_BASE_URL } from '@/constants';
+import { SITE_BASE_URL, SITE_DESCRIPTION } from '@/constants';
 
 // fetch the first few images on the server
 export async function getStaticProps() {
@@ -29,13 +29,10 @@ export default function Home({ images }: HomeProps) {
     <LayoutTemplate pt={8}>
       <Head>
         <title>Home - Space Gallery</title>
-        <meta
-          name="description"
-          content="View the finest photos from space, curated by NASA."
-        />
+        <meta name="description" content={SITE_DESCRIPTION} />
         <meta
           property="og:description"
-          content="View the finest photos from space, curated by NASA."
+          content={SITE_DESCRIPTION}
           key="description"
         />
         <meta property="og:title" content="Home - Space Gallery" key="title" />

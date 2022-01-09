@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { Container } from '@chakra-ui/react';
 import GetAPOD from '@/api/apod';
 import type { ImagePageProps } from '@/typings/image';
-import { SITE_BASE_URL } from '@/constants';
+import { SITE_BASE_URL, SITE_DESCRIPTION } from '@/constants';
 import LayoutTemplate from '@/components/LayoutTemplate';
 import ImagePost from '@/components/ImagePost';
 import BackHeader from '@/components/BackHeader';
@@ -48,13 +48,10 @@ function Image({ image }: ImagePageProps) {
       <LayoutTemplate py={4}>
         <Head>
           <title>Loading Image... - Space Gallery</title>
-          <meta
-            name="description"
-            content="View the finest photos from space, curated by NASA."
-          />
+          <meta name="description" content={SITE_DESCRIPTION} />
           <meta
             property="og:description"
-            content="View the finest photos from space, curated by NASA."
+            content={SITE_DESCRIPTION}
             key="description"
           />
           <link rel="icon" href="/favicon.ico" />

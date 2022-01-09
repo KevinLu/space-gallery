@@ -10,3 +10,5 @@ export const SKELETON_ARRAY = Array.from(
 );
 
 export const SITE_BASE_URL = `https://space-gallery.vercel.app/`;
+
+export const SITE_DESCRIPTION = `The finest collection of space imagery, curated by NASA's Astronomy Picture of the Day.`;
