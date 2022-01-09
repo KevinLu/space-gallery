@@ -1,8 +1,8 @@
 import {
   Box,
   BoxProps,
-  Image,
-  ImageProps,
+  Img,
+  ImgProps,
   Flex,
   Text,
   IconButton,
@@ -20,7 +20,7 @@ import { useState, useEffect, useContext } from 'react';
 import MediaTypeTag from './MediaTypeTag';
 
 const MotionBox = motion<BoxProps>(Box);
-const MotionImage = motion<ImageProps>(Image);
+const MotionImg = motion<ImgProps>(Img);
 const MotionIconButton = motion<IconButtonProps>(IconButton);
 
 function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
@@ -60,9 +60,10 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
           minH="30rem"
           flexGrow={1}
         >
-          <MotionImage
+          <MotionImg
             src={src}
             alt={title}
+            loading="lazy"
             initial={{ scale: 1.05 }}
             animate={{
               scale: isImageLoaded ? 1.05 : 1,
