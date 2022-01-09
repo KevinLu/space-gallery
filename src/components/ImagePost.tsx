@@ -66,7 +66,6 @@ function ImagePost({
               boxSize="18px"
               color={iconColor}
               alignSelf="flex-start"
-              mt={1}
             />
             <Text>{description}</Text>
           </HStack>
