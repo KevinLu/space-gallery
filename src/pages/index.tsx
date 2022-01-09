@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Container } from '@chakra-ui/react';
 import LayoutTemplate from '@/components/LayoutTemplate';
 import Header from '@/components/Header';
 import Gallery from '@/components/Gallery';
@@ -20,7 +21,7 @@ export async function getStaticProps() {
 
 export default function Home({ images }: HomeProps) {
   return (
-    <LayoutTemplate px={4} pt={8}>
+    <LayoutTemplate pt={8}>
       <Head>
         <title>Home - Space Gallery</title>
         <meta
@@ -33,10 +34,10 @@ export default function Home({ images }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Container as="main" maxW="100rem" mt={4}>
         <Header />
         <Gallery images={images} />
-      </main>
+      </Container>
 
       <Footer />
     </LayoutTemplate>

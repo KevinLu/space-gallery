@@ -7,6 +7,7 @@ import LayoutTemplate from '@/components/LayoutTemplate';
 import ImagePost from '@/components/ImagePost';
 import BackHeader from '@/components/BackHeader';
 import LoadingIndicator from '@/components/LoadingIndicator';
+import Footer from '@/components/Footer';
 
 type Params = {
   params: {
@@ -64,7 +65,7 @@ function Image({ image }: ImagePageProps) {
   const ogType = isVideo ? `video.other` : `website`;
 
   return (
-    <LayoutTemplate py={4}>
+    <LayoutTemplate pt={4}>
       <Head>
         <title>{image.title} - Space Gallery</title>
         <meta name="description" content={image.explanation} />
@@ -86,6 +87,7 @@ function Image({ image }: ImagePageProps) {
           copyright={image.copyright}
         />
       </Container>
+      <Footer />
     </LayoutTemplate>
   );
 }
