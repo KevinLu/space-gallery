@@ -83,7 +83,7 @@ function Image({ image }: ImagePageProps) {
         <meta property="og:site_name" content="Space Gallery" key="site_name" />
         <meta
           property="og:url"
-          content={`${SITE_BASE_URL}${image.date}`}
+          content={`${SITE_BASE_URL}image/${image.date}`}
           key="url"
         />
         <link rel="icon" href="/favicon.ico" />
