@@ -4,6 +4,7 @@ import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useState, useEffect } from 'react';
 import InitialLikesContext from '@/context/Likes';
+import { PageContextProvider } from '@/context/Page';
 import { LOCALSTORAGE_KEY } from '@/constants';
 import getFromLocalStorage from '@/utils/getFromLocalStorage';
 
@@ -31,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ChakraProvider>
       <QueryClientProvider client={queryClient}>
         <InitialLikesContext.Provider value={initialLikedImages}>
-          <Component {...pageProps} />
+          <PageContextProvider>
+            <Component {...pageProps} />
+          </PageContextProvider>
         </InitialLikesContext.Provider>
       </QueryClientProvider>
     </ChakraProvider>

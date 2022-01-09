@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { PageContext } from '@/context/Page';
 import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
 import { fetchImagesByPage } from '@/api/apod';
@@ -9,7 +10,7 @@ import ImageCard from './ImageCard';
 import BlankImageCard from './BlankImageCard';
 
 function Gallery({ images }: GalleryProps) {
-  const [page, setPage] = useState(1);
+  const { page, setPage } = useContext(PageContext);
 
   const { data, error, isLoading, isFetching } = useQuery(
     [`queryAPOD`, page],
