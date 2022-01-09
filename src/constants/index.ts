@@ -8,3 +8,5 @@ export const SKELETON_ARRAY = Array.from(
   { length: NUM_DAYS_PER_FETCH },
   (_, k) => k,
 );
+
+export const SITE_BASE_URL = `https://space-gallery.vercel.app/`;
