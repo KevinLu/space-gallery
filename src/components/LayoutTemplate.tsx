@@ -1,14 +1,16 @@
-import { Flex, BoxProps } from '@chakra-ui/react';
+import { Flex, BoxProps, useColorModeValue } from '@chakra-ui/react';
 
 function LayoutTemplate({
   children,
   ...props
 }: { children: React.ReactNode } & BoxProps) {
+  const bg = useColorModeValue(`gray.50`, `gray.900`);
+
   return (
     <Flex
       flexDir="column"
       justifyContent="space-between"
-      bg="gray.50"
+      bg={bg}
       minH="100vh"
       {...props}
     >

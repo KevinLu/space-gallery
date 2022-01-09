@@ -8,7 +8,7 @@ function BackHeader() {
       <Button
         as="a"
         aria-label="Go back to gallery"
-        leftIcon={<Icon as={ArrowLeft} mr={2} color="gray.800" />}
+        leftIcon={<Icon as={ArrowLeft} mr={2} />}
         variant="unstyled"
         size="lg"
         display="flex"

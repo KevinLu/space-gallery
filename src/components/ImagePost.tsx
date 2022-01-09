@@ -7,6 +7,7 @@ import {
   HStack,
   Icon,
   Divider,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import MediaTypeTag from './MediaTypeTag';
 import PostActions from './PostActions';
@@ -27,9 +28,11 @@ function ImagePost({
   copyright,
 }: ImagePostProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const bg = useColorModeValue(`white`, `gray.800`);
+  const iconColor = useColorModeValue(`gray.600`, `gray.500`);
 
   return (
-    <VStack as="article" borderWidth="1px" bg="white" p={4}>
+    <VStack as="article" borderWidth="1px" bg={bg} p={4}>
       <MotionImg
         src={src}
         alt={title}
@@ -46,14 +49,14 @@ function ImagePost({
       />
       <Flex mt={2} alignItems="center" justifyContent="space-between">
         <VStack justifyContent="space-between" alignItems="flex-start">
-          <HStack>
+          <HStack flexWrap="wrap">
             <Text as="h2" fontSize="xl" fontWeight="semibold">
               {title}
             </Text>
             <MediaTypeTag mediaType={mediaType} />
           </HStack>
           <HStack>
-            <Icon as={Calendar} boxSize="18px" color="gray.600" />
+            <Icon as={Calendar} boxSize="18px" color={iconColor} />
             {` `}
             <Text>{date}</Text>
           </HStack>
@@ -61,7 +64,7 @@ function ImagePost({
             <Icon
               as={ChatDots}
               boxSize="18px"
-              color="gray.600"
+              color={iconColor}
               alignSelf="flex-start"
               mt={1}
             />
@@ -69,7 +72,7 @@ function ImagePost({
           </HStack>
           {copyright ? (
             <HStack>
-              <Icon as={Copyright} color="gray.600" boxSize="18px" />
+              <Icon as={Copyright} color={iconColor} boxSize="18px" />
               <Text>{copyright}</Text>
             </HStack>
           ) : null}

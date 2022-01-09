@@ -8,6 +8,7 @@ import {
   IconButton,
   IconButtonProps,
   VStack,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import type { ImageCardProps } from '@/typings/image';
@@ -26,6 +27,7 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const initialLikes = useContext(InitialLikesContext);
   const [isLiked, setIsLiked] = useState(initialLikes[title]);
+  const bg = useColorModeValue(`white`, `gray.800`);
 
   // hydrate the isLiked state from the value from context
   useEffect(() => {
@@ -46,7 +48,7 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
       flexDir="column"
       justifyContent="space-between"
       borderWidth="1px"
-      bg="white"
+      bg={bg}
       p={4}
     >
       <NextLink href={`/image/${date}`} passHref>
