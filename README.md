@@ -2,9 +2,12 @@
 
 space-gallery is a small app designed to nicely format images from NASA's Astronomy Picture of the Day API. Each image's page is statically generated with Next.js, thus allowing shareable links with the appropriate `meta` tags.
 
+It was built for the Summer 2022 Shopify Frontend Developer Intern application.
+
 ## Try it out
 
 The project is currently hosted at https://space-gallery.vercel.app/
+
 ## Features
 
 - Responsive design, works on mobile
@@ -18,6 +21,13 @@ The project is currently hosted at https://space-gallery.vercel.app/
 ## Screenshots
 ![Home page](https://i.imgur.com/pWJKMoq.png)
 ![Image page](https://i.imgur.com/lTIwdjZ.png)
+
+## Built with
+
+- Next.js
+- Chakra-UI
+- react-query
+- Phosphor Icons
 
 ## Getting started
 
