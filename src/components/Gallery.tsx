@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import { useContext } from 'react';
 import { PageContext } from '@/context/Page';
 import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
@@ -7,7 +8,8 @@ import LoadingIndicator from '@/components/LoadingIndicator';
 import type { GalleryProps } from '@/typings/image';
 import { SKELETON_ARRAY } from '@/constants';
 import ImageCard from './ImageCard';
-import BlankImageCard from './BlankImageCard';
+
+const BlankImageCard = dynamic(() => import(`./BlankImageCard`));
 
 function Gallery({ images }: GalleryProps) {
   const { page, setPage } = useContext(PageContext);
