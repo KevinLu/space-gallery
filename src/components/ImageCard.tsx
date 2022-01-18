@@ -63,7 +63,6 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
           <MotionImg
             src={src}
             alt={title}
-            loading="lazy"
             initial={{ scale: 1.05 }}
             animate={{
               scale: isImageLoaded ? 1.05 : 1,
