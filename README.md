@@ -21,12 +21,18 @@ The project is currently hosted at https://space-gallery.vercel.app/
 
 ## Getting started
 
-First, run the development server:
+Make sure your Node.js is at least version `v14.16.1`.
+
+Once you cloned this repository and navigated to the root directory, install the dependencies:
+
+```bash
+npm install
+```
+
+Now, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -34,3 +40,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `src/pages/index.ts`. The page auto-updates as you edit the file.
 
 The file for fetching images is `src/api/apod.ts`. Make sure to replace the API Key in this file with your own.
+
+## Deployment
+
+Run the build script to generated a production optimized build.
+
+```bash
+npm run build
+```
+
+For easier deployment, I recommend hosting the project on Vercel. You can link your GitHub repository and it will automatically create a deployment for every push.
