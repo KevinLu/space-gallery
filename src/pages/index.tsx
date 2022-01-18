@@ -9,10 +9,10 @@ import type { HomeProps } from '@/typings/image';
 import { SITE_BASE_URL, SITE_DESCRIPTION } from '@/constants';
 
 // fetch the first few images on the server
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const res = await fetchImagesByPage(1);
-    return { props: { images: res }, revalidate: 60 };
+    return { props: { images: res } };
   } catch (error) {
     // NASA api error
     console.error(error);
