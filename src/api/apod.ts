@@ -12,7 +12,7 @@ const APOD_API_URL = `https://api.nasa.gov/planetary/apod`;
 const GetAPOD = ({ date, start_date, end_date, count, thumbs }: IGetAPOD) => {
   return axios.get<APODResponse>(APOD_API_URL, {
     params: {
-      api_key: `TnHVgjGmGcNAhHGBGnn7eoR1b3QlJ1aejKwJqZBC`,
+      api_key: `eHwAPAdWmBwc65vBQfMBAOwLrX1zskDPju6YgTmP`,
       date,
       start_date,
       end_date,
