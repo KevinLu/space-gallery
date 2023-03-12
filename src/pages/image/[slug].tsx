@@ -9,6 +9,7 @@ import ImagePost from '@/components/ImagePost';
 import BackHeader from '@/components/BackHeader';
 import LoadingIndicator from '@/components/LoadingIndicator';
 import Footer from '@/components/Footer';
+import formatTitle from '@/utils/formatTitle';
 
 type Params = {
   params: {
@@ -42,12 +43,13 @@ export async function getStaticProps({ params }: Params) {
 
 function Image({ image }: ImagePageProps) {
   const { isFallback } = useRouter();
+  const loadingTitle = formatTitle(`Loading Image...`);
 
   if (isFallback) {
     return (
       <LayoutTemplate py={4}>
         <Head>
-          <title>Loading Image... - Space Gallery</title>
+          <title>{loadingTitle}</title>
           <meta name="description" content={SITE_DESCRIPTION} />
           <meta
             property="og:description"
@@ -66,11 +68,12 @@ function Image({ image }: ImagePageProps) {
   const src = isVideo ? image.thumbnail_url : image.url;
   const hdSrc = isVideo ? image.url : image.hdurl;
   const ogType = isVideo ? `video.other` : `website`;
+  const title = formatTitle(image.title);
 
   return (
     <LayoutTemplate pt={4}>
       <Head>
-        <title>{image.title} - Space Gallery</title>
+        <title>{title}</title>
         <meta name="description" content={image.explanation} />
         <meta property="og:title" content={image.title} key="title" />
         <meta

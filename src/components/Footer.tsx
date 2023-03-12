@@ -18,7 +18,7 @@ function Footer() {
   return (
     <Box as="footer" role="contentinfo" mt={8} px={4} py={4} bg={bg}>
       <HStack spacing={4} justifyContent="space-between">
-        <NextLink href="/" passHref>
+        <NextLink href="/" passHref legacyBehavior>
           <Heading
             as="a"
             aria-label="Space Gallery"

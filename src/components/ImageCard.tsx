@@ -51,7 +51,7 @@ function ImageCard({ src, title, date, mediaType }: ImageCardProps) {
       bg={bg}
       p={4}
     >
-      <NextLink href={`/image/${date}`} passHref>
+      <NextLink href={`/image/${date}`} passHref legacyBehavior>
         <MotionBox
           as="a"
           borderRadius="md"
