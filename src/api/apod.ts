@@ -1,50 +1,17 @@
-import type { IGetAPOD, APODResponse } from '@/typings/api';
-import { ONE_DAY_MS, NUM_DAYS_PER_FETCH } from '@/constants';
+import type { APODImage } from '@/typings/api';
 import axios from 'axios';
 
-const APOD_API_URL = `https://api.nasa.gov/planetary/apod`;
+const API_URL = `/api/apod`;
 
-/**
- * Wrapper around a get request to call the APOD api
- * @param {IGetAPOD} - relevant query params sent to the api
- * @returns {APODResponse} - a single APODImage or an array of APODImage
- */
-const GetAPOD = ({ date, start_date, end_date, count, thumbs }: IGetAPOD) => {
-  return axios.get<APODResponse>(APOD_API_URL, {
+// Calls our own Next.js API route (not NASA's API)
+const clientSideFetchImagesByPage = async (page: number) => {
+  const res = await axios.get<Array<APODImage>>(API_URL, {
     params: {
-      api_key: `eHwAPAdWmBwc65vBQfMBAOwLrX1zskDPju6YgTmP`,
-      date,
-      start_date,
-      end_date,
-      count,
-      thumbs,
+      page,
     },
   });
+
+  return res.data;
 };
 
-export const fetchImagesByPage = async (page: number) => {
-  // default is to fetch images up to NUM_DAYS_PER_FETCH days ago
-  // multiply by the page to fetch previous NUM_DAYS_PER_FETCH days of images
-  const start = new Date(Date.now() - NUM_DAYS_PER_FETCH * page * ONE_DAY_MS);
-  const start_date = new Date(
-    start.getTime() - start.getTimezoneOffset() * 60000,
-  )
-    .toISOString()
-    .split(`T`)[0];
-
-  const res = await GetAPOD({
-    start_date,
-    thumbs: true,
-  });
-
-  if (Array.isArray(res.data)) {
-    // sort the images by most recent date
-    return res.data.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-  }
-
-  return [res.data];
-};
-
-export default GetAPOD;
+export default clientSideFetchImagesByPage;

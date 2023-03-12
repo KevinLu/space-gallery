@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { PageContext } from '@/context/Page';
 import { SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useQuery } from 'react-query';
-import { fetchImagesByPage } from '@/api/apod';
+import clientSideFetchImagesByPage from '@/api/apod';
 import LoadingIndicator from '@/components/LoadingIndicator';
 import type { GalleryProps } from '@/typings/image';
 import { SKELETON_ARRAY } from '@/constants';
@@ -16,7 +16,7 @@ function Gallery({ images }: GalleryProps) {
 
   const { data, error, isLoading, isFetching } = useQuery(
     [`queryAPOD`, page],
-    () => fetchImagesByPage(page),
+    () => clientSideFetchImagesByPage(page),
     { keepPreviousData: true, initialData: images, enabled: page !== 1 },
   );
 

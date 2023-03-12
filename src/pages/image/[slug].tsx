@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Container } from '@chakra-ui/react';
-import GetAPOD from '@/api/apod';
+import { GetAPOD } from '@/pages/api/apod';
 import type { ImagePageProps } from '@/typings/image';
 import { SITE_BASE_URL, SITE_DESCRIPTION } from '@/constants';
 import LayoutTemplate from '@/components/LayoutTemplate';

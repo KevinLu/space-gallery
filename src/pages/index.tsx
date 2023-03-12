@@ -4,7 +4,7 @@ import LayoutTemplate from '@/components/LayoutTemplate';
 import Header from '@/components/Header';
 import Gallery from '@/components/Gallery';
 import Footer from '@/components/Footer';
-import { fetchImagesByPage } from '@/api/apod';
+import { fetchImagesByPage } from '@/pages/api/apod';
 import type { HomeProps } from '@/typings/image';
 import { SITE_BASE_URL, SITE_DESCRIPTION } from '@/constants';
 
