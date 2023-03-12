@@ -7,6 +7,7 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import { GithubLogo, SunDim, Moon } from 'phosphor-react';
 
 function Footer() {
@@ -17,9 +18,16 @@ function Footer() {
   return (
     <Box as="footer" role="contentinfo" mt={8} px={4} py={4} bg={bg}>
       <HStack spacing={4} justifyContent="space-between">
-        <Heading size="md" fontWeight="semibold">
-          Space Gallery
-        </Heading>
+        <NextLink href="/" passHref>
+          <Heading
+            as="a"
+            aria-label="Space Gallery"
+            size="md"
+            fontWeight="semibold"
+          >
+            Space Gallery
+          </Heading>
+        </NextLink>
         <HStack spacing={4}>
           <Button
             onClick={toggleColorMode}
