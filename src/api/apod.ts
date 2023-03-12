@@ -24,12 +24,13 @@ const GetAPOD = ({ date, start_date, end_date, count, thumbs }: IGetAPOD) => {
 
 export const fetchImagesByPage = async (page: number) => {
   // default is to fetch images up to NUM_DAYS_PER_FETCH days ago
-  // en-CA locale provides YYYY-MM-DD format
   // multiply by the page to fetch previous NUM_DAYS_PER_FETCH days of images
-  const now = Date.now();
+  const start = new Date(Date.now() - NUM_DAYS_PER_FETCH * page * ONE_DAY_MS);
   const start_date = new Date(
-    now - NUM_DAYS_PER_FETCH * page * ONE_DAY_MS,
-  ).toLocaleDateString(`en-CA`);
+    start.getTime() - start.getTimezoneOffset() * 60000,
+  )
+    .toISOString()
+    .split(`T`)[0];
 
   const res = await GetAPOD({
     start_date,
